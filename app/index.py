@@ -1,22 +1,27 @@
 import json
-from sentence_transformers import SentenceTransformer
+from pathlib import Path
+from langchain_community.embeddings import SentenceTransformerEmbeddings
 from langchain_chroma import Chroma
 
-# Get the chunked data
-texts = []
-with open("data/chunks.jsonl", "r", encoding="utf-8") as f:
-    for line in f:
-        texts.append(json.loads(line)["text"])
+CHUNK_PATH = "data/chunks.jsonl"
+PERSIST_DIR_PATH = "chroma_index"
+EMBEDDING_MODEL = "all-MiniLM-L6-v2"
 
-# Define the model
-model = SentenceTransformer("all-MiniLM-L6-v2")
+def load_chunks(path):
+    texts = []
+    with open(path, "r", encoding="utf-8") as f:
+        for line in f:
+            texts.append(json.loads(line)["text"])
+    return texts
 
-# Create the embeddings
-embeddings = model.encode(texts)
+if __name__ == "__main__":
+    Path(PERSIST_DIR_PATH).mkdir(parents=True, exist_ok=True)
+    texts = load_chunks(CHUNK_PATH)
 
-# Building the index
-vectorstore = Chroma.from_documents(
-    texts,
-    embedding=embeddings,
-    persist_directory="chroma_index"
-)
+    embedding_model = SentenceTransformerEmbeddings()
+
+    vectorstore = Chroma.from_texts(
+        texts,
+        embedding=embedding_model,
+        persist_directory=PERSIST_DIR_PATH
+    )
