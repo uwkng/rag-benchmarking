@@ -1,5 +1,6 @@
 import json
 from sentence_transformers import SentenceTransformer
+from langchain_chroma import Chroma
 
 # Get the chunked data
 texts = []
@@ -13,3 +14,9 @@ model = SentenceTransformer("all-MiniLM-L6-v2")
 # Create the embeddings
 embeddings = model.encode(texts)
 
+# Building the index
+vectorstore = Chroma.from_documents(
+    texts,
+    embedding=embeddings,
+    persist_directory="chroma_index"
+)
