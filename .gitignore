@@ -208,3 +208,6 @@ __marimo__/
 
 # Download files
 data/*
+
+# Vector database
+chroma_index
