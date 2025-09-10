@@ -12,3 +12,8 @@ USER = (
     "Context: \n{context}\n\n"
     "Answer: "
 )
+
+rag_prompt = ChatPromptTemplate.from_messages([
+    ("system", SYSTEM),
+    ("user", USER),
+])
