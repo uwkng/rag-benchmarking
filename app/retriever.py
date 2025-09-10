@@ -1,13 +1,13 @@
 from pathlib import Path
 from langchain_chroma import Chroma
-from langchain_community.embeddings import SentenceTransformerEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 
 PERSIST_DIR = "chroma_index"
 SEARCH_TYPE = "similarity"
 SEARCH_KWARGS = {"k": 2}
 
 def get_embeddings():
-    return SentenceTransformerEmbeddings(model_name="all-mpnet-base-v2")
+    return HuggingFaceEmbeddings(model_name="all-mpnet-base-v2")
 
 def get_retriever():
     persist_path = Path(PERSIST_DIR)

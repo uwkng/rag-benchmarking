@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-from langchain_community.embeddings import SentenceTransformerEmbeddings
+from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
 
 CHUNK_PATH = "data/chunks.jsonl"
@@ -18,7 +18,7 @@ if __name__ == "__main__":
     Path(PERSIST_DIR_PATH).mkdir(parents=True, exist_ok=True)
     texts = load_chunks(CHUNK_PATH)
 
-    embedding_model = SentenceTransformerEmbeddings()
+    embedding_model = HuggingFaceEmbeddings()
 
     vectorstore = Chroma.from_texts(
         texts,
