@@ -1,4 +1,4 @@
-from langchain_community.llms import Ollama
+from langchain_ollama import ChatOllama
 
 def get_local_llm(model: str = "mistral", temperature: float = 0.2):
-    return Ollama(model=model, temperature=temperature)
+    return ChatOllama(model=model, temperature=temperature)
