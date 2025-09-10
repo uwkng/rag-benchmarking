@@ -6,3 +6,9 @@ SYSTEM = (
     "If the answer is not in the context, say you don't know."
     "Always cite sources like [1], [2]"
 )
+
+USER = (
+    "Question: {question}\n\n"
+    "Context: \n{context}\n\n"
+    "Answer: "
+)
