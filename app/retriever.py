@@ -8,7 +8,7 @@ SEARCH_KWARGS = {"k": 2}
 
 def get_embeddings():
     """Get the embedding model - fallback if app.embeddings doesn't exist"""
-    return SentenceTransformerEmbeddings(model_name="all-mpnet-base")
+    return SentenceTransformerEmbeddings(model_name="all-mpnet-base-v2")
 
 def get_retriever():
     """Load persisted Chroma vectorstore and return a retriever"""
