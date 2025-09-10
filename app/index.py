@@ -5,7 +5,7 @@ from langchain_chroma import Chroma
 
 CHUNK_PATH = "data/chunks.jsonl"
 PERSIST_DIR_PATH = "chroma_index"
-EMBEDDING_MODEL = "all-MiniLM-L6-v2"
+EMBEDDING_MODEL = "all-mpnet-base-v2"
 
 def load_chunks(path):
     texts = []
